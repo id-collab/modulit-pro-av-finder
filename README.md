@@ -91,3 +91,7 @@ This guest service is read-only. It does not expose personal prices, exact wareh
 - Technical contact: id@modulit.eu
 
 This repository contains public connection metadata and client documentation for the hosted service. The hosted service is operated by UAB Modulit Solutions. Modulit names and logos remain their owners' trademarks.
+
+## License
+
+The integration manifests and documentation in this repository are available under the [MIT license](./LICENSE). Modulit logos and other brand assets are excluded from that license and remain protected by their owners' rights. The hosted service and its implementation are governed separately by Modulit's terms.

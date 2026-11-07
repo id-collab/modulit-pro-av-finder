@@ -2,6 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "modulit-pro-av-finder",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "Find professional AV equipment and installation guides in the Modulit EU and Polish catalogues, size cable runs and configure AV hardware.",
   "author": {
     "name": "UAB Modulit Solutions",
