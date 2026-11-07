@@ -1,0 +1,10 @@
+{
+  "name": "modulit-pro-av-finder",
+  "version": "1.0.0",
+  "mcpServers": {
+    "modulit": {
+      "httpUrl": "https://www.modulit.eu/mcp"
+    }
+  },
+  "description": "Find Modulit EU and PL pro AV equipment, guides and configurators through a read-only guest MCP connection."
+}

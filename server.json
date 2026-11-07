@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "eu.modulit/pro-av-finder",
+  "description": "Search Modulit EU and Polish pro AV equipment and guides, size cable runs and configure AV hardware.",
+  "title": "Modulit Pro AV Finder",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.modulit.eu/mcp-guide/",
+  "icons": [
+    {
+      "src": "https://www.modulit.eu/images/companies/140/modulit-pro-av-finder/modulit-mark-v1.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.modulit.eu/mcp"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "modulit-pro-av-finder",
+  "version": "1.0.0",
+  "description": "Find professional AV equipment and installation guides in the Modulit EU and Polish catalogues, size cable runs and configure AV hardware.",
+  "author": {
+    "name": "UAB Modulit Solutions",
+    "url": "https://www.modulit.eu/"
+  },
+  "homepage": "https://www.modulit.eu/mcp-guide/",
+  "keywords": [
+    "pro AV",
+    "audiovisual",
+    "HDMI",
+    "cables",
+    "AV integration",
+    "Modulit"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Modulit Pro AV Finder",
+        "shortDescription": "Find AV solutions & equipment",
+        "longDescription": "Find professional audiovisual equipment and published installation guides in Modulit’s EU and Polish catalogues. Match products to your signal format and cable run, compare alternatives, or build a PureLink Mediahub parts list. Results link to Modulit guides and product pages. Product lookups show suggested retail prices (MSRP, excluding VAT) and availability when the selected storefront makes them public.",
+        "developerName": "UAB Modulit Solutions",
+        "category": "Productivity",
+        "capabilities": [
+          "Search AV equipment and guides",
+          "Size cable runs",
+          "Configure AV hardware"
+        ],
+        "websiteURL": "https://www.modulit.eu/mcp-guide/",
+        "supportURL": "https://www.modulit.eu/contacts-en/",
+        "privacyPolicyURL": "https://www.modulit.eu/privacy-and-cookie-policy/",
+        "termsOfServiceURL": "https://www.modulit.eu/terms-of-sale/",
+        "defaultPrompt": [
+          "Find two cables for 4K60 HDMI over 40 metres on the Polish Modulit site. Link the matching models.",
+          "Find a Modulit guide for extending a USB camera and microphone in a meeting room.",
+          "Configure three PureLink Mediahub ENC10 sets using preset 1. Show parts per set and in total."
+        ],
+        "brandColor": "#F7941D",
+        "composerIcon": "./modulit.png",
+        "logo": "./modulit.png"
+      }
+    }
+  },
+  "repository": "https://github.com/id-collab/modulit-pro-av-finder"
+}
