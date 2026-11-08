@@ -1,0 +1,22 @@
+{
+  "name": "modulit-pro-av-finder",
+  "displayName": "Modulit Pro AV Finder",
+  "version": "1.0.0",
+  "description": "Search Modulit EU and PL pro AV equipment and installation guides, compare alternatives, calculate cable runs and configure AV hardware. Read-only guest access with storefront commercial visibility.",
+  "author": {
+    "name": "UAB Modulit Solutions",
+    "email": "id@modulit.eu"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pro-av",
+    "audiovisual",
+    "equipment",
+    "hdmi",
+    "cables",
+    "modulit",
+    "mcp"
+  ],
+  "logo": "modulit.png",
+  "mcpServers": "mcp.json"
+}
