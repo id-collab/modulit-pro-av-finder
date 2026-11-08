@@ -1,0 +1,842 @@
+{
+  "author": "UAB Modulit Solutions",
+  "authorUrl": "https://www.modulit.eu/",
+  "cloudEndpoint": "https://www.modulit.eu/mcp",
+  "description": "Search Modulit EU and PL pro AV equipment and installation guides, compare alternatives, calculate cable runs and configure AV hardware. Read-only guest access with storefront commercial visibility.",
+  "homepage": "https://www.modulit.eu/mcp-guide/",
+  "identifier": "id-collab-modulit-pro-av-finder",
+  "name": "Modulit Pro AV Finder",
+  "prompts": [],
+  "resources": [],
+  "tools": [
+    {
+      "name": "search_site",
+      "description": "Find published solutions, guides, tools and products for a task, model or SKU. Catalogue links identify published pages; only structured facts support compatibility. Use get_products for current terms.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "language": {
+            "default": "en",
+            "type": "string",
+            "enum": [
+              "en",
+              "pl",
+              "de",
+              "fr",
+              "es",
+              "it",
+              "cs",
+              "ro",
+              "hu",
+              "bg",
+              "lt",
+              "ar"
+            ]
+          },
+          "q": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 180,
+            "pattern": "^[^\\x00-\\x1f\\x7f<>]+$"
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "technical": {
+                "type": "object",
+                "properties": {
+                  "brand": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "application": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "videoMode": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "minLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  },
+                  "maxLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxMsrp": {
+                "type": "object",
+                "properties": {
+                  "amountMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  }
+                },
+                "required": [
+                  "amountMinor",
+                  "currency"
+                ],
+                "additionalProperties": false
+              },
+              "availability": {
+                "type": "string",
+                "enum": [
+                  "not_in_stock",
+                  "low",
+                  "in_stock",
+                  "high",
+                  "backorder"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "offset": {
+            "default": 0,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "storefront",
+          "q"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "search_products",
+      "description": "Find products by SKU, product text, engineering requirements or visible MSRP/status. Explicit technical constraints are mandatory.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "language": {
+            "default": "en",
+            "type": "string",
+            "enum": [
+              "en",
+              "pl",
+              "de",
+              "fr",
+              "es",
+              "it",
+              "cs",
+              "ro",
+              "hu",
+              "bg",
+              "lt",
+              "ar"
+            ]
+          },
+          "q": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 180,
+            "pattern": "^[^\\x00-\\x1f\\x7f<>]+$"
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "technical": {
+                "type": "object",
+                "properties": {
+                  "brand": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "application": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "videoMode": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "minLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  },
+                  "maxLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxMsrp": {
+                "type": "object",
+                "properties": {
+                  "amountMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  }
+                },
+                "required": [
+                  "amountMinor",
+                  "currency"
+                ],
+                "additionalProperties": false
+              },
+              "availability": {
+                "type": "string",
+                "enum": [
+                  "not_in_stock",
+                  "low",
+                  "in_stock",
+                  "high",
+                  "backorder"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "offset": {
+            "default": 0,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "storefront",
+          "q"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "get_products",
+      "description": "Look up 1–20 exact product IDs or SKUs; return public MSRP and indicative availability when displayed by this storefront.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "language": {
+            "default": "en",
+            "type": "string",
+            "enum": [
+              "en",
+              "pl",
+              "de",
+              "fr",
+              "es",
+              "it",
+              "cs",
+              "ro",
+              "hu",
+              "bg",
+              "lt",
+              "ar"
+            ]
+          },
+          "products": {
+            "minItems": 1,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[1-9]\\d{0,9}$"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160,
+                      "pattern": "^[^\\x00-\\x1f\\x7f<>]+$"
+                    }
+                  },
+                  "required": [
+                    "sku"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "storefront",
+          "products"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "search_product_analogs",
+      "description": "Compare another product against the source technical requirements. Missing evidence is not a match. Installation-specific compatibility must still be checked.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "language": {
+            "default": "en",
+            "type": "string",
+            "enum": [
+              "en",
+              "pl",
+              "de",
+              "fr",
+              "es",
+              "it",
+              "cs",
+              "ro",
+              "hu",
+              "bg",
+              "lt",
+              "ar"
+            ]
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[1-9]\\d{0,9}$"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "sku": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160,
+                    "pattern": "^[^\\x00-\\x1f\\x7f<>]+$"
+                  }
+                },
+                "required": [
+                  "sku"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "technical": {
+                "type": "object",
+                "properties": {
+                  "brand": {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  "application": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "videoMode": {
+                    "type": "string",
+                    "maxLength": 48
+                  },
+                  "minLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  },
+                  "maxLengthM": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "additionalProperties": false
+              },
+              "maxMsrp": {
+                "type": "object",
+                "properties": {
+                  "amountMinor": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000000000
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  }
+                },
+                "required": [
+                  "amountMinor",
+                  "currency"
+                ],
+                "additionalProperties": false
+              },
+              "availability": {
+                "type": "string",
+                "enum": [
+                  "not_in_stock",
+                  "low",
+                  "in_stock",
+                  "high",
+                  "backorder"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "offset": {
+            "default": 0,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "storefront",
+          "source"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "calculate_cable_route",
+      "description": "Use the native Modulit cable calculator. Enter actual sections in metres, loops, installation route and allowance. Result is required cable length, not a certification of signal reach.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "horizontalM": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "riseM": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "dropM": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "loopFromM": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "loopToM": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "travelM": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "routing": {
+            "default": "direct",
+            "type": "string",
+            "enum": [
+              "direct",
+              "tray",
+              "raceway",
+              "conduit"
+            ]
+          },
+          "signal": {
+            "default": "unspecified",
+            "type": "string",
+            "enum": [
+              "unspecified",
+              "hdmi18",
+              "hdmi48",
+              "hdbt",
+              "network",
+              "usb2",
+              "usb3",
+              "usbc",
+              "dp",
+              "sdi12",
+              "sdi3",
+              "audio",
+              "unbalanced",
+              "rs232",
+              "fiber",
+              "speaker",
+              "power",
+              "dmx",
+              "vga",
+              "dvi",
+              "kvm",
+              "dac",
+              "conversion",
+              "other"
+            ]
+          },
+          "wastePercent": {
+            "default": 0,
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "quantity": {
+            "default": 1,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          }
+        },
+        "required": [
+          "storefront",
+          "horizontalM"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "describe_power_selector",
+      "description": "Get the native SurgeX selector fields and allowed values.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "configure_power",
+      "description": "Run the native SurgeX equipment selector for this storefront. Missing evidence is counted separately.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "values": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 48
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "maxItems": 12,
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "offset": {
+            "default": 0,
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "storefront",
+          "values"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "configure_mediahub",
+      "description": "Inspect the native PureLink mediahub2 choices, or resolve a housing, preset, socket, covers, mount and quantity into an actual bill of materials. Omit state to list choices.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "storefront": {
+            "type": "string",
+            "enum": [
+              "eu",
+              "pl"
+            ]
+          },
+          "state": {
+            "type": "object",
+            "properties": {
+              "enc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "pre": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "hc": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "s": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "rc": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "cvr": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              },
+              "gst": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "mnt": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "sets": {
+                "default": 1,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "storefront"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "1.0.0",
+  "icon": "https://www.modulit.eu/images/companies/140/modulit-pro-av-finder/modulit-mark-v1.png",
+  "tags": [
+    "pro-av",
+    "audiovisual",
+    "equipment",
+    "hdmi",
+    "cables",
+    "modulit"
+  ]
+}

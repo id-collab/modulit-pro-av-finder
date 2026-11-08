@@ -20,6 +20,8 @@ Choose a remote MCP connection in your client and enter the endpoint. The server
 
 ### Cursor
 
+The Cursor Marketplace manifest is `.cursor-plugin/plugin.json`; it uses the shared `mcp.json` and the committed Modulit logo. Official marketplace review is pending.
+
 Add this entry to your MCP settings:
 
 ```json
@@ -51,6 +53,10 @@ This repository includes `gemini-extension.json` with a direct HTTP connection:
 ```sh
 gemini extensions install https://github.com/id-collab/modulit-pro-av-finder
 ```
+
+### LobeHub
+
+The public listing is https://lobehub.com/mcp/id-collab-modulit-pro-av-finder. Choose its remote HTTP connection to `https://www.modulit.eu/mcp`; no account or API key is required by Modulit. The root `lhm.plugin.json` records the public tool schemas and publisher declaration.
 
 ### ChatGPT and other MCP clients
 
