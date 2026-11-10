@@ -3,7 +3,7 @@
   "name": "eu.modulit/pro-av-finder",
   "description": "Search Modulit EU and Polish pro AV equipment and guides, size cable runs and configure AV hardware.",
   "title": "Modulit Pro AV Finder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://www.modulit.eu/mcp-guide/",
   "icons": [
     {
@@ -19,5 +19,9 @@
       "type": "streamable-http",
       "url": "https://www.modulit.eu/mcp"
     }
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/id-collab/modulit-pro-av-finder",
+    "source": "github"
+  }
 }

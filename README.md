@@ -13,7 +13,7 @@ Find professional audiovisual equipment and published installation solutions by 
 - **Authentication:** none. No account or API key is needed.
 - **Connection guide:** https://www.modulit.eu/mcp-guide/
 - **Official MCP Registry:** `eu.modulit/pro-av-finder`
-- **Registry record:** https://registry.modelcontextprotocol.io/v0.1/servers/eu.modulit%2Fpro-av-finder/versions/1.0.0
+- **Registry record:** https://registry.modelcontextprotocol.io/v0.1/servers/eu.modulit%2Fpro-av-finder/versions/1.0.1
 - **Verified Glama listing:** https://glama.ai/mcp/connectors/eu.modulit/pro-av-finder
 
 Choose a remote MCP connection in your client and enter the endpoint. The server supports both EU and Polish storefronts. Storefront visibility and geographic restrictions apply.
