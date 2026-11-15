@@ -1,0 +1,27 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "modulit-pro-av-finder",
+  "displayName": "Modulit Pro AV Finder",
+  "version": "1.0.0",
+  "description": "Find Modulit EU and PL pro AV equipment and guides, compare alternatives, calculate cable runs and configure AV hardware. Read-only guest access.",
+  "logo": "modulit.png",
+  "suggestedPrompts": [
+    "Find two 4K60 HDMI cables for a 40 metre run on Modulit PL. Link the exact matching models.",
+    "Find a published Modulit EU guide for extending a USB camera in a meeting room.",
+    "Configure three PureLink Mediahub ENC10 sets with preset 1 on Modulit PL. Show parts per set and totals."
+  ],
+  "author": {
+    "name": "UAB Modulit Solutions",
+    "url": "https://www.modulit.eu/"
+  },
+  "homepage": "https://www.modulit.eu/mcp-guide/",
+  "repository": "https://github.com/id-collab/modulit-pro-av-finder",
+  "license": "MIT",
+  "keywords": [
+    "pro-av",
+    "audiovisual",
+    "hdmi",
+    "cables",
+    "modulit"
+  ]
+}
