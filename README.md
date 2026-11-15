@@ -46,6 +46,18 @@ Use MCP Servers > Remote Servers, enter the endpoint and select **Streamable HTT
 {"mcpServers":{"modulit":{"type":"streamableHttp","url":"https://www.modulit.eu/mcp","disabled":false,"autoApprove":[]}}}
 ```
 
+### Google Antigravity
+
+The native Antigravity manifest is `.antigravity-plugin/plugin.json`. It uses the bundled Modulit logo and the root `mcp_config.json`. The portable root `plugin.json` remains available for other clients.
+
+For a manual remote connection in Antigravity, add this public guest server to your workspace `.agents/mcp_config.json` or global `~/.gemini/config/mcp_config.json`:
+
+```json
+{"mcpServers":{"modulit":{"serverUrl":"https://www.modulit.eu/mcp"}}}
+```
+
+No Modulit account, API key, local command, or executable is required. Public Marketplace publication is not yet confirmed. See the [official Antigravity MCP documentation](https://antigravity.google/docs/mcp/) for client setup.
+
 ### Gemini CLI
 
 This repository includes `gemini-extension.json` with a direct HTTP connection:
